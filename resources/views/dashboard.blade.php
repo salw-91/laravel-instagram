@@ -20,6 +20,7 @@
                     </div>
                     <div class="pt-4 font-bold">laravel.com</div>
                     <div>Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</div>
+                    <div><a href="https://laravel.com">www.laravel.com</a></div>
                 </div>
             </div>
         </div>
