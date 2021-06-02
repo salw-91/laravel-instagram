@@ -18,6 +18,8 @@
                         <div class="pr-4"><strong>23k</strong>followers</div>
                         <div class="pr-4"><strong>212</strong>following</div>
                     </div>
+                    <div class="pt-4 font-bold">laravel.com</div>
+                    <div>Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</div>
                 </div>
             </div>
         </div>
