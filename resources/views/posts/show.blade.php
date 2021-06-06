@@ -11,7 +11,7 @@
             <div>
                 <div class="d-flex align-items-center">
                     <div class="pr-3">
-                        <img src="/storage/{{$post->user->profile->image}}" class="rounded-circle w-100" style="max-width: 40px;">
+                        <img src="{{$post->user->profile->profileImage()}}" class="rounded-circle w-100" style="max-width: 40px;">
                     </div>
                     <div>
                         <div class="font-weight-bold ">
@@ -22,9 +22,7 @@
                         </div>
                     </div>
                 </div>
-
                 <hr>
-
                 <p>
                     <span class="font-weight-bold">
                         <a href="/profile/{{ $post->user->id }}" class="no-underline font-bold">
