@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    public function profile()
+    {   
+        $user = Auth::user();
+
+        return view('profiles.index', compact('user'));
+    }
     public function index(User $user)
     {   
         return view('profiles.index', compact('user'));
@@ -31,16 +37,18 @@ class ProfileController extends Controller
         
         if (request('image')) {
             $imagePath = request('image')->store('profile', 'public');
-            
+
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
             $image->save();
+
+            $imageArray = ['image' => $imagePath];
         }
 
-        $user->profile->update(array_merge(
+        auth()->user()->profile->update(array_merge(
             $data,
-            ['image' => $imagePath]
+            $imageArray ?? []
         ));
-        
+        $user = Auth::user();
         return view('profiles.index', compact('user'));
     }
 }
