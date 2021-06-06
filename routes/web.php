@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
@@ -10,10 +11,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+    Route::get('/dashboard', function () {return view('dashboard')->with('user', Auth::user());})->name('dashboard');
     // Profile
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile.show');
-    Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
     //Post
