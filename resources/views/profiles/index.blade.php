@@ -8,27 +8,34 @@
                     <img src="/img/logo_white_Square.PNG" style="height: 100px;" class="rounded-circle">
                 </div>
                 <div class="col-9">
-                    <div><h1>{{ Auth::user()->username }}</h1></div>
+                    <div class="pb-2 ">
+                        <h1>{{ Auth::user()->username }}</h1>
+                        
+                        @can('update', $user->profile)
+                        <a href="/posts/create" class="no-underline bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Post</a>
+                        <a href="/profile/{{$user->id}}/edit" class="no-underline bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Profile</a>  
+                        @endcan
+
+                    </div>
                 <div class="d-flex">
-                    <div class="pr-4"><strong>153</strong>posts</div>
+                    <div class="pr-4"><strong>{{$user->posts->count()}}</strong>posts</div>
                     <div class="pr-4"><strong>23k</strong>followers</div>
                     <div class="pr-4"><strong>212</strong>following</div>
                 </div>
-                <div class="pt-4 font-bold">laravel.com</div>
-                <div>Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</div>
-                <div><a href="https://laravel.com">www.laravel.com</a></div>
+                <div class="pt-4 font-bold">{{ $user->profile->title }}</div>
+                <div>{{ $user->profile->description }}</div>
+                <div><a href="{{ $user->profile->url }}">{{ $user->profile->url }}</a></div>
             </div>
             </div>
-            <div class="row pt-5">
+            <div class="row pt-5 bp-4">
+                @foreach ($user->posts as $post)
                 <div class="col-4">
-                    <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="w-100">
+                    <a href="/posts/show/{{$post->id}}">
+                        <img src="/storage/{{$post->image}}" class="w-100">
+                    </a>
                 </div>
-                <div class="col-4">
-                    <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="w-100">
-                </div>
-                <div class="col-4">
-                    <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="w-100">
-                </div>
+                @endforeach
+
             </div>
         </div>
         
